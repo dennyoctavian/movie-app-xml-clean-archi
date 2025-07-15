@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.activities.DetailMovieActivity">
+
+
+    <ImageView
+        android:id="@+id/iv_movie_photo"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:contentDescription="@string/foto_banner_movie"
+        android:src="@color/design_default_color_secondary_variant"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tv_movie_name"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/title_movie"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/iv_movie_photo"
+        app:layout_constraintTop_toBottomOf="@+id/iv_movie_photo" />
+
+    <TextView
+        android:id="@+id/tv_movie_country"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/indonesia_malaysia_singapore"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/tv_movie_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_movie_name" />
+
+    <TextView
+        android:id="@+id/tv_movie_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="@string/lorem_ipsum"
+        android:textSize="12sp"
+        app:layout_constraintEnd_toEndOf="@+id/tv_movie_name"
+        app:layout_constraintStart_toStartOf="@+id/tv_movie_country"
+        app:layout_constraintTop_toBottomOf="@+id/tv_movie_country" />
+
+    <RatingBar
+        android:id="@+id/ratingFood"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:numStars="5"
+        android:rating="3"
+        android:theme="@style/RatingBar"
+        app:layout_constraintStart_toStartOf="@+id/tv_movie_description"
+        app:layout_constraintTop_toBottomOf="@+id/tv_movie_description" />
+
+    <TextView
+        android:id="@+id/ratingNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/_4_5"
+        app:layout_constraintBottom_toBottomOf="@+id/ratingFood"
+        app:layout_constraintStart_toEndOf="@+id/ratingFood"
+        app:layout_constraintTop_toTopOf="@+id/ratingFood" />
+
+    <TextView
+        android:id="@+id/saveDeleteText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="@string/save_movie"
+        app:layout_constraintStart_toStartOf="@+id/ratingFood"
+        app:layout_constraintTop_toBottomOf="@+id/ratingFood" />
+
+    <ImageView
+        android:id="@+id/loveIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:contentDescription="@string/save_button"
+        app:layout_constraintBottom_toBottomOf="@+id/saveDeleteText"
+        app:layout_constraintStart_toEndOf="@+id/saveDeleteText"
+        app:layout_constraintTop_toTopOf="@+id/saveDeleteText"
+        app:srcCompat="@drawable/ic_heart" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
