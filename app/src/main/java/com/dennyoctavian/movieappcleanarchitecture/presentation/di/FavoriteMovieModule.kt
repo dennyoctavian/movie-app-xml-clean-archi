@@ -69,11 +69,4 @@ object FavoriteMovieModule {
     fun provideCheckFavoriteUseCase(favoriteRepository: IFavoriteMovieRepository): CheckFavoriteUseCase {
         return CheckFavoriteUseCaseImpl(favoriteRepository)
     }
-
-    @Provides
-    @Singleton
-    fun provideFavoriteViewModel(getFavoritesUseCase: GetFavoritesUseCase) : FavoriteViewModel {
-        return FavoriteViewModel(getFavoritesUseCase)
-    }
-
 }

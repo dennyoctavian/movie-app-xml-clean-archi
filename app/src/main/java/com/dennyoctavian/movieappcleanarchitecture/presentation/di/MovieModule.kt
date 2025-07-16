@@ -41,10 +41,4 @@ object MovieModule {
     fun provideGetMovieUseCase(movieRepository: IMovieRepository): GetMoviesUseCase {
         return GetMoviesUseCaseImpl(movieRepository)
     }
-
-    @Provides
-    @Singleton
-    fun provideListMovieViewModel(getMoviesUseCase: GetMoviesUseCase): ListMovieViewModel {
-        return ListMovieViewModel(getMoviesUseCase)
-    }
 }

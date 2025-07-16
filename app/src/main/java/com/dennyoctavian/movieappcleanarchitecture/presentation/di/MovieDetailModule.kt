@@ -21,19 +21,4 @@ object MovieDetailModule {
     fun provideGetMovieDetailUseCase(movieRepository: IMovieRepository): GetDetailMovieUseCase {
         return GetDetailMovieUseCaseImpl(movieRepository)
     }
-
-    @Provides
-    @Singleton
-    fun provideDetailMovieViewModel(
-        getDetailMovieUseCase: GetDetailMovieUseCase,
-        checkFavoriteUseCase: CheckFavoriteUseCase,
-        addFavoriteUseCase: AddFavoritesUseCase,
-        removeFavoriteUseCase: RemoveFavoritesUseCase): DetailMovieViewModel {
-        return DetailMovieViewModel(
-            getDetailMovieUseCase,
-            checkFavoriteUseCase,
-            addFavoriteUseCase,
-            removeFavoriteUseCase
-        )
-    }
 }
