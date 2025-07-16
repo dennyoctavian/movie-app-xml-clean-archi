@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieAppCleanArchitecture">
         <activity
-            android:name=".presentation.activities.FavoriteActivity"
+            android:name="com.dennyoctavian.favorite.presentation.activities.FavoriteActivity"
             android:exported="false" />
         <activity
             android:name=".presentation.activities.DetailMovieActivity"
