@@ -39,6 +39,7 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    dynamicFeatures += setOf(":favorite")
 }
 
 dependencies {
@@ -53,6 +54,7 @@ dependencies {
     ksp(libs.hilt.android.compiler)
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.glide)
+    implementation(project(":core"))
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
