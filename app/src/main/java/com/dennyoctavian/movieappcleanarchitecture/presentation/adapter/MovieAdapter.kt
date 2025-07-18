@@ -1,5 +1,6 @@
 package com.dennyoctavian.movieappcleanarchitecture.presentation.adapter
 
+import android.R
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -7,7 +8,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dennyoctavian.movieappcleanarchitecture.databinding.ItemMovieBinding
-import com.dennyoctavian.movieappcleanarchitecture.domain.models.MovieEntity
+import com.dennyoctavian.core.domain.models.MovieEntity
 import com.dennyoctavian.movieappcleanarchitecture.presentation.activities.DetailMovieActivity
 import java.util.Locale
 
@@ -18,8 +19,8 @@ class MovieAdapter(private val context: Context, private val movies: List<MovieE
             Glide.with(binding.root.context)
                 .load("https://image.tmdb.org/t/p/w500${movie.posterPath}")
                 .centerCrop()
-                .placeholder(android.R.color.darker_gray)
-                .error(android.R.color.holo_red_dark)
+                .placeholder(R.color.darker_gray)
+                .error(R.color.holo_red_dark)
                 .into(binding.imageMovie)
             binding.nameMovie.text = movie.title
             binding.ratingFood.rating = (movie.voteAverage / 2).toFloat()

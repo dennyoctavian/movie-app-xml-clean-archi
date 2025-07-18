@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.dennyoctavian.movieappcleanarchitecture.com.dennyoctavian.favorite.presentation.activities.FavoriteActivity">
+    tools:context="com.dennyoctavian.favorite.com.dennyoctavian.movieappcleanarchitecture.presentation.FavoriteMovieActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvMovieList"

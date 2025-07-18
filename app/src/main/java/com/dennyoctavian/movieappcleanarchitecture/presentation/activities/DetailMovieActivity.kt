@@ -13,9 +13,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.bumptech.glide.Glide
 import com.dennyoctavian.movieappcleanarchitecture.R
 import com.dennyoctavian.movieappcleanarchitecture.databinding.ActivityDetailMovieBinding
-import com.dennyoctavian.movieappcleanarchitecture.domain.models.MovieEntity
-import com.dennyoctavian.movieappcleanarchitecture.presentation.viewmodels.DetailMovieViewModel
-import com.dennyoctavian.movieappcleanarchitecture.presentation.viewmodels.FavoriteViewModel
+import com.dennyoctavian.core.domain.models.MovieEntity
+import com.dennyoctavian.core.presentation.viewmodels.DetailMovieViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import java.util.Locale

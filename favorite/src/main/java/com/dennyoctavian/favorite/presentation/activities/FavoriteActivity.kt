@@ -1,34 +1,34 @@
-package com.dennyoctavian.movieappcleanarchitecture.presentation.activities
+package com.dennyoctavian.favorite.presentation.activities
 
-import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dennyoctavian.core.presentation.di.FavoriteModuleDependencies
+import com.dennyoctavian.core.presentation.viewmodels.FavoriteViewModel
+import com.dennyoctavian.core.presentation.viewmodels.FavoriteViewModelFactory
 import com.dennyoctavian.movieappcleanarchitecture.R
-import com.dennyoctavian.movieappcleanarchitecture.databinding.ActivityMainBinding
+import com.dennyoctavian.movieappcleanarchitecture.databinding.ActivityFavoriteBinding
 import com.dennyoctavian.movieappcleanarchitecture.presentation.adapter.MovieAdapter
-import com.dennyoctavian.core.presentation.viewmodels.ListMovieViewModel
-import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.EntryPointAccessors
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private val listMovieViewModel: ListMovieViewModel by viewModels()
+class FavoriteActivity : AppCompatActivity() {
+    private lateinit var favoriteViewModel: FavoriteViewModel
     private lateinit var adapter: MovieAdapter
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: ActivityFavoriteBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivityFavoriteBinding.inflate(layoutInflater)
         val view = binding.root
         setContentView(view)
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -36,26 +36,28 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        val entryPoint = EntryPointAccessors.fromApplication(
+            applicationContext,
+            FavoriteModuleDependencies::class.java
+        )
 
+        val factory = FavoriteViewModelFactory(entryPoint.getFavoriteMoviesUseCase())
+        favoriteViewModel = ViewModelProvider(this, factory)[FavoriteViewModel::class.java]
         binding.rvMovieList.layoutManager = LinearLayoutManager(this)
 
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
-                listMovieViewModel.movies.collect { movies ->
-                    adapter = MovieAdapter(this@MainActivity,movies)
+                favoriteViewModel.favorites.collect { favorites ->
+                    adapter = MovieAdapter(this@FavoriteActivity, favorites)
                     binding.rvMovieList.adapter = adapter
                 }
             }
         }
+        favoriteViewModel.loadFavorites()
+    }
 
-        listMovieViewModel.getMovies()
-
-        binding.fabFavorite.setOnClickListener {
-            try {
-                startActivity(Intent(this, Class.forName("com.dennyoctavian.favorite.presentation.activities.FavoriteActivity")))
-            } catch (e: Exception){
-                Toast.makeText(this, "Module not found", Toast.LENGTH_SHORT).show()
-            }
-        }
+    override fun onResume() {
+        favoriteViewModel.loadFavorites()
+        super.onResume()
     }
 }
