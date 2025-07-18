@@ -59,6 +59,7 @@ dependencies {
     annotationProcessor(libs.androidx.room.compiler)
     implementation(libs.glide)
     implementation(project(":core"))
+    implementation(libs.core.ktx)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)

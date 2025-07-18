@@ -16,6 +16,8 @@ import com.dennyoctavian.movieappcleanarchitecture.R
 import com.dennyoctavian.movieappcleanarchitecture.databinding.ActivityMainBinding
 import com.dennyoctavian.core.presentation.viewmodels.ListMovieViewModel
 import com.dennyoctavian.movieappcleanarchitecture.presentation.adapter.MovieAdapter
+import com.google.android.play.core.splitinstall.SplitInstallManagerFactory
+import com.google.android.play.core.splitinstall.SplitInstallRequest
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
@@ -51,11 +53,28 @@ class MainActivity : AppCompatActivity() {
         listMovieViewModel.getMovies()
 
         binding.fabFavorite.setOnClickListener {
-            try {
-                startActivity(Intent(this, Class.forName("com.dennyoctavian.favorite.presentation.activities.FavoriteActivity")))
-            } catch (e: Exception){
-                Toast.makeText(this, "Module not found", Toast.LENGTH_SHORT).show()
-            }
+            val splitInstallManager = SplitInstallManagerFactory.create(this)
+            val request = SplitInstallRequest.newBuilder()
+                .addModule("favorite")
+                .build()
+
+            splitInstallManager.startInstall(request)
+                .addOnSuccessListener {
+                    try {
+                        val intent = Intent(
+                            this,
+                            Class.forName("com.dennyoctavian.favorite.presentation.activities.FavoriteActivity")
+                        )
+                        startActivity(intent)
+                    } catch (e: Exception) {
+                        Toast.makeText(this, "Gagal buka modul favorite", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                .addOnFailureListener { exception ->
+                    Toast.makeText(this, "Gagal install modul favorite", Toast.LENGTH_SHORT).show()
+                    exception.printStackTrace()
+                }
+
         }
     }
 }
