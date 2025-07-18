@@ -14,8 +14,8 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dennyoctavian.movieappcleanarchitecture.R
 import com.dennyoctavian.movieappcleanarchitecture.databinding.ActivityMainBinding
-import com.dennyoctavian.movieappcleanarchitecture.presentation.adapter.MovieAdapter
 import com.dennyoctavian.core.presentation.viewmodels.ListMovieViewModel
+import com.dennyoctavian.movieappcleanarchitecture.presentation.adapter.MovieAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
