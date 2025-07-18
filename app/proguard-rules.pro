@@ -40,3 +40,7 @@
 -keep class androidx.room.RoomDatabase
 -keep class * extends androidx.room.RoomDatabase
 -keep interface * implements androidx.room.Dao
+
+-keep class net.sqlcipher.** { *; }
+-dontwarn net.sqlcipher.**
+-keep class androidx.sqlite.db.SupportSQLiteDatabase { *; }
